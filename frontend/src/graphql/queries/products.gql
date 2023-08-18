@@ -1,0 +1,15 @@
+query GetProducts {
+  products {
+    id
+    name
+    size_per_unit
+  }
+}
+
+query GetProductById($id: ID!) {
+  productById(id: $id) {
+    id
+    name
+    size_per_unit
+  }
+}

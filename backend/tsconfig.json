@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDirs": ["./", "./libs/types"],
+    "allowJs": true,
+    "baseUrl": ".",
+    "paths": {
+        "@my-types/*": ["./libs/types/*"],
+    },
+    "module": "commonjs",
+    "target": "es2021",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true
+  },
+  "lib": ["es2021"],
+  "include": ["**/*.ts", "./schema.graphql"],
+  "exclude": ["dist", "node_modules", "./codegen.ts"],
+  "ts-node": { "require": ["tsconfig-paths/register"] }
+}

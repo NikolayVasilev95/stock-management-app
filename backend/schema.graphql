@@ -1,0 +1,10 @@
+type Query {
+  products: [Product]
+  productById(id: ID!): Product
+}
+
+type Product {
+  id: ID!
+  name: String!
+  size_per_unit: Int!
+}
