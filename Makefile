@@ -1,14 +1,20 @@
 MAIN_DIR=$(PWD)
 BACKEND_DIR=$(MAIN_DIR)/backend
 
-#start backend locally
-start_backend_locally:
+check-migration-name:
+ifndef MIGRATION_NAME
+	$(error Please set MIGRATION_NAME ! Example: make p_migrate MIGRATION_NAME="init")
+endif
+
+
+#start application locally
+start_app_locally:
 	sudo rsync -avu --delete "./libs/" "./backend/libs"
 	docker-compose -f $(MAIN_DIR)/docker-compose.yml up
 
 #prisma migrate
-p_migrate:
-	docker exec -it stock_management_backend_services yarn run p-migrate
+p_migrate: check-migration-name
+	docker exec -it stock_management_backend_services npx prisma migrate dev --name $(MIGRATION_NAME)
 
 #start prisma studio
 start_p_studio:

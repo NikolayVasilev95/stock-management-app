@@ -1,10 +1,51 @@
 type Query {
   products: [Product]
   productById(id: ID!): Product
+  warehouses: [Warehouse]
+  warehouseById(id: ID!): Warehouse
+}
+
+type Mutation {
+  createProduct(name: String!, size_per_unit: Int!): Product
+  updateProduct(id: ID!, name: String!, size_per_unit: Int!): Product
+  deleteProduct(id: ID!): Product
+  createStockMovement(
+    warehouse_id: String!
+    product_id: String!
+    amount: Int!
+    movement_date: Date!
+    movement_type: MovementType!
+  ): StockMovement
 }
 
 type Product {
   id: ID!
   name: String!
   size_per_unit: Int!
+}
+
+type Warehouse {
+  id: ID!
+  name: String!
+  size: Int!
+  is_hazardous: Boolean!
+  stock_movement: [StockMovement]
+}
+
+type StockMovement {
+  movement_id: ID!
+  warehouse: Warehouse
+  warehouse_id: String!
+  product: Product
+  product_id: String!
+  amount: Int!
+  movement_date: Date!
+  movement_type: MovementType!
+}
+
+scalar Date
+
+enum MovementType {
+  INPORT
+  EXPORT
 }

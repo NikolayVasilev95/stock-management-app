@@ -15,7 +15,7 @@ import { BrowserRouter } from "react-router-dom";
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
-    graphQLErrors.map(({ message, locations, path }) => {
+    graphQLErrors.forEach(({ message, locations, path }) => {
       console.log(`message: ${message}, location: ${locations}, path: ${path}`);
     });
   }
