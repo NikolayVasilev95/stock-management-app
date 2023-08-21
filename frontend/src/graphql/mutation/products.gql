@@ -1,0 +1,31 @@
+mutation CreateProduct($name: String!, $sizePerUnit: Int!) {
+  createProduct(name: $name, size_per_unit: $sizePerUnit) {
+    id
+    name
+    size_per_unit
+  }
+}
+
+mutation UpdateProduct(
+  $updateProductId: ID!
+  $name: String!
+  $sizePerUnit: Int!
+) {
+  updateProduct(
+    id: $updateProductId
+    name: $name
+    size_per_unit: $sizePerUnit
+  ) {
+    id
+    name
+    size_per_unit
+  }
+}
+
+mutation DeleteProduct($deleteProductId: ID!) {
+  deleteProduct(id: $deleteProductId) {
+    id
+    name
+    size_per_unit
+  }
+}

@@ -1,0 +1,23 @@
+query Warehouses {
+  warehouses {
+    id
+    name
+    size
+    is_hazardous
+  }
+}
+
+query WarehouseById($warehouseByIdId: ID!) {
+  warehouseById(id: $warehouseByIdId) {
+    id
+    name
+    size
+    is_hazardous
+    stock_movement {
+      movement_id
+      amount
+      movement_date
+      movement_type
+    }
+  }
+}

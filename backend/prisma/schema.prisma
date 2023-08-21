@@ -1,0 +1,42 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Warehouse {
+  id             String          @id @default(uuid())
+  name           String
+  size           Int
+  is_hazardous   Boolean
+  stock_movement StockMovement[]
+}
+
+model Product {
+  id             String          @id @default(uuid())
+  name           String
+  size_per_unit  Int
+  stock_movement StockMovement[]
+}
+
+model StockMovement {
+  movement_id   String       @id @default(uuid())
+  warehouse     Warehouse    @relation(fields: [warehouse_id], references: [id])
+  warehouse_id  String
+  product       Product      @relation(fields: [product_id], references: [id])
+  product_id    String
+  amount        Int
+  movement_date DateTime
+  movement_type MovementType @default(INPORT)
+}
+
+enum MovementType {
+  INPORT
+  EXPORT
+}

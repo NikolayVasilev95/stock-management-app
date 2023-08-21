@@ -1,0 +1,22 @@
+mutation CreateStockMovement(
+  $warehouseId: String!
+  $productId: String!
+  $amount: Int!
+  $movementDate: Date!
+  $movementType: MovementType!
+) {
+  createStockMovement(
+    warehouse_id: $warehouseId
+    product_id: $productId
+    amount: $amount
+    movement_date: $movementDate
+    movement_type: $movementType
+  ) {
+    movement_id
+    warehouse_id
+    product_id
+    amount
+    movement_date
+    movement_type
+  }
+}
